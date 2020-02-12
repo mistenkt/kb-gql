@@ -4,7 +4,7 @@ A React GraphQL request hook with request-batching and data caching built on `gr
 ## Why ?
 The main graphql client libraries for react are huge and bloated, and most of them had problems with unions that were too tedious to fix. 
 
-Now `graphql-request` is an awesome lightweight graphql client, which is why this package builds upon it, but it lacks a couple of important features. 
+Now [`graphql-request`](https://github.com/prisma-labs/graphql-request) is an awesome lightweight graphql client, which is why this library builds upon it, but it lacks a couple of important features. 
 
 1. Query batching. Lets say I have a Header component, a Footer component and then the Page component it self. All these components (or containers, call them what you will) require data. And I feel that the components that require the data should own the query to get their data. (Makes it easier to see what you can expect in return). Without query batching that would make 3 requests to the Graphql api just to show a single page. This somewhat defeats the awsomeness of GraphQL which is that you can query anything you need in one request. Enter query batching! If multiple queries try to hit the Provider within 50ms (default, can be adjusted) they will be merged into a single request.
 

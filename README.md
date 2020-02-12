@@ -1,5 +1,5 @@
 # kb-gql
-A React GraphQL request hook with request-batching and data caching built on `graphql-request`
+A React GraphQL request hook with request-batching and data caching built on [`graphql-request`](https://github.com/prisma-labs/graphql-request)
 
 ## Why ?
 The main graphql client libraries for react are huge and bloated, and most of them had problems with unions that were too tedious to fix. 

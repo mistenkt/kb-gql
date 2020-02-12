@@ -1,6 +1,6 @@
 {
   "name": "kb-gql",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "request hook for graphql with simple batching and caching",
   "main": "./src/index.js",
   "author": "mistenkt",

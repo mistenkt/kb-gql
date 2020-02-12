@@ -130,7 +130,7 @@ Now [`graphql-request`](https://github.com/prisma-labs/graphql-request) is an aw
     
    Your view might need to fetch data from two different parts of the schema. Since ``useRequest`` does some magic batching behind the scenes, you need to call it twice (dont worry, only one request will be made). The following example is of an office index page, it requires offices to be fetched from the api, but it also needs to fetch content that is to be displayed on the page before the actual listing of the offices
    
-   ```
+   ```jsx harmony
    ...
    import useRequest from 'kb-gql';
    

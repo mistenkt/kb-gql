@@ -12,7 +12,7 @@ Now `graphql-request` is an awesome lightweight graphql client, which is why thi
 
 ## Installation
 
-`yarn add useRequest`
+`yarn add kb-gql`
 
 ## Usage
 

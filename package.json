@@ -4,6 +4,7 @@
   "description": "request hook for graphql with simple batching and caching",
   "main": "./src/index.js",
   "author": "mistenkt",
+  "homepage": "https://github.com/mistenkt/kb-gql",
   "license": "MIT",
   "private": false,
   "scripts": {

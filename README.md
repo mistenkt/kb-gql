@@ -60,7 +60,7 @@ Now [`graphql-request`](https://github.com/prisma-labs/graphql-request) is an aw
    }
     ```
 
-### API
+## API
 
 #### `RequestProvider` Component
 * `graphqlUrl` (string) The url to your GraphQL endpoint.
@@ -93,3 +93,93 @@ Now [`graphql-request`](https://github.com/prisma-labs/graphql-request) is an aw
     ```jsx harmony
     const menuItems = useRequest(query, '_global_header_menu', 'fields.header.menuItems');
     ```
+
+## More examples
+
+* Variables in requests:
+
+    ```jsx harmony
+  import React from 'react';
+  import useRequest from 'kb-gql';
+    
+  const makeQuery = vars => `
+      pageBy(slug: "${vars.slug}") {
+          title
+          image
+          content
+          slug
+      }    
+  `
+  
+  const Page = ({slug}) => {
+      const data = useRequest(makeQuery({slug}));
+      
+      if(!data) return null;
+      
+      return (
+          <div>
+              <h1>{data.title}</h1>
+              <img src={data.image}/>
+              <p>{data.content}</p>
+          </div>
+      )  
+  }
+    ```
+  
+* Component needs to query different parts of the schema
+    
+   Your view might need to fetch data from two different parts of the schema. Since ``useRequest`` does some magic batching behind the scenes, you need to call it twice (dont worry, only one request will be made). The following example is of an office index page, it requires offices to be fetched from the api, but it also needs to fetch content that is to be displayed on the page before the actual listing of the offices
+   
+   ```
+   ...
+   import useRequest from 'kb-gql';
+   
+   const pageQuery = `
+       officePage {
+           fields {
+               title
+               textContent
+           }
+       }
+   `;
+   
+   const officesQuery = `
+       offices {
+           nodes {
+               title
+               slug
+               image
+           }
+       }
+   `;
+   
+   const OfficeIndex = () => {
+       // Note that we need to specify keys here as we are using multiple queries for this page
+   
+       const pageData = useRequest(pageQuery, 'officesPage', 'fields');
+       const offices = useRequest(officesQuery, 'offices', 'nodes');
+       
+       if(!data) return null;
+   
+       return (
+           <div>
+               <h1>{pageData.title}</h1>
+               <p>{pageData.textContent}</p>
+               
+               <ul>
+               {!!offices && offices.map((item, key) => (
+                   <li>
+                       <a href={`/offices/${item.slug}`}>
+                           <img src={item.image}/>
+                           <h2>{item.title}</h2>
+                       </a>
+                   </li>
+               ))}
+               </ul>
+           </div>
+       )
+   }
+   
+   ...
+   
+   ```

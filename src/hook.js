@@ -12,6 +12,8 @@ import queueRequest from './fetcher';
 const useRequest = (query, key, extractor) => {
     const { dispatch, state } = useContext(store);
 
+    key = key || window.location.pathname;
+
     useEffect(() => {
         if (!state[key]) queueRequest(dispatch, key, query);
         if (state[key] && options.debug)

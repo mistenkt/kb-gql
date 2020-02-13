@@ -54,19 +54,19 @@ const requestBatch = async dispatch => {
         fixedKeys[key] = queries[key].extractor
             ? objByString(response[_key], queries[key].extractor)
             : response[_key];
-
-        if (options.debug)
-            console.log('-- graphql-request stored data:', fixedKeys);
-
-        // Store the data
-        dispatch({
-            type: 'request/store',
-            payload: fixedKeys
-        });
-
-        // Clear queries
-        queries = {};
     });
+
+    if (options.debug)
+        console.log('-- graphql-request stored data:', fixedKeys);
+
+    // Store the data
+    dispatch({
+        type: 'request/store',
+        payload: fixedKeys
+    });
+
+    // Clear queries
+    queries = {};
 };
 
 export default queueRequest;

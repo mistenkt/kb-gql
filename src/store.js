@@ -19,7 +19,6 @@ export const RequestProvider = ({ children, graphqlUrl, ...opts }) => {
         switch (type) {
             case 'request/store':
                 return { ...state, ...payload };
-            case 'REDUX/CLEAR':
             case 'request/clear':
                 return initialState;
             default:

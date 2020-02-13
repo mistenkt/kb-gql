@@ -15,7 +15,7 @@ const useRequest = (query, key, extractor) => {
     key = key || window.location.pathname;
 
     useEffect(() => {
-        if (!state[key]) queueRequest(dispatch, key, query);
+        if (!state[key]) queueRequest(dispatch, key, query, extractor);
         if (state[key] && options.debug)
             console.log(`-- graphql-request ${key} found in cache!`);
     }, []);

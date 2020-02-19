@@ -18,7 +18,7 @@ const useRequest = (query, key, extractor) => {
         if (!state[key]) queueRequest(dispatch, key, query, extractor);
         if (state[key] && options.debug)
             console.log(`-- graphql-request ${key} found in cache!`);
-    }, []);
+    }, [query]);
 
     return state[key];
 };

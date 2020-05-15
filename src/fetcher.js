@@ -42,7 +42,7 @@ const requestBatch = async dispatch => {
 
     Object.keys(response).map(_key => {
         const key =
-            _key.indexOf('global') < 0
+            _key.indexOf('_global_') !== 0
                 ? _key
                       .split('__')
                       .join('-')
